@@ -1,4 +1,6 @@
 
+
+
 49,27,6D,20
 ,66,61,69,72,6C,79,20,70,72,6F,66,69,63,69,65,6E,74,20,69,6E,20,50,79,74,68,6F,6E,2C,20,61,6E,64,20,6D,6F,73,74,20,74,68,69,6E,67,73,20,63
 ,6C,6F,75,64,2E,20,41,20,6C,6F,74,20,6F,66,20,6D,79,20,77,6F,72,6B,20,65,6E,67,69,6E,65,65,72,69,6E,67,20,68,61,73,20,62,65,65,6E,20,53,52,45,20,66,6F,63,
@@ -10,6 +12,77 @@
 ,72,74,61,69,6E,6C,79,2C,20,61,6E,64,20,69,66,20,77,65,20,63,6F,75,6C,64,20,69,6D,70,6C,65,6D,65,6E,74,20,73,6F,6D,65,20,75,73,65,66,75,6C,20,74,6F,6F,6C,73,20,77,6F,72,6B,69,6
 E,67,20,69,6E,20,6B,75,62,65,72,6E,65,74,65,73,20,6F,72,20
 ,6F,74,68,65,72,20,69,6E,66,72,61,73,74,72,75,63,74,75,72,65,20,72,65,6C,61,74,65,64,20,70,72,6F,6A,65,63,74,73,20,74,68,61,74,27,64,20,62,65,20,67,72,65,61,74,2E,0A
+
+
+
+
+worker nodes are where pods are scheduled and run
+- kubelet:
+    - an agent that runs on every worker nodes
+    - makes sure that container in a pod are running and healthy
+    - communicatess directly with the api-server iin the control plane
+- container runtime:
+    - a kubelet assigned to a new pod starts a container using the Container Runtime Interface (CRI)
+    - CRI enables the Kubelet to create containers with engines like Containerd, or AWS Firecracker
+
+DockerShim was removed in kubernetes 1.24, which was the docker container runtime. That no longer being an option doesn't mean docker images can't be run via other engines such as ContainerD.
+
+
+- Kube-proxy:
+  The Kubernetes network proxy runs on each node.
+  This reflects services as defined in the Kubernetes API on each node and can do simple TCP, UDP, and SCTP stream forwarding or round robin TCP, UDP, and SCTP forwarding 
+  across a set of backends. Service cluster IPs and ports are currently found through Docker-links-compatible environment variables specifying ports opened by the service proxy.
+  There is an optional addon that provides cluster DNS for these cluster IPs. The user must create a service with the apiserver API to configure the proxy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+the first and most important control plane is the KUBE_API server
+
+- pods, deployments, and the HPA have API endpoints
+- k88s API has a rest interface
+- `kubectl` and `kubeadm` are CLI tools to communicate wit the k8s API via HTTP req
+
+ccm connects your cluster to AWS for orchestration and management
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Str: Proficiency in Python and cloud technologies, experience in SRE-focused engineering tasks.
 A4I: Go programming, advanced Kubernetes operations, systems design.
